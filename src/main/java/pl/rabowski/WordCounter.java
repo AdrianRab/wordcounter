@@ -4,25 +4,30 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class WordCounter {
-    private Map<String, Integer> words = new ConcurrentHashMap<String, Integer>();
+    private Map<String, Integer> words = new ConcurrentHashMap<>();
     private int numberOfOccurrences;
 
-    public int getCount(String word){
+    public int getCount(String word) {
         count(word);
         return numberOfOccurrences;
     }
 
-    private void count(String word){
-        if(word != null || word.length()>0){
-            if(words.containsKey(word)){
+    //zrobic public i osobno wywolywac w testach? Do przemyslenia.
+    private void count(String word) {
+        if (checkIfNotNullOrEmptyString(word)) {
+            if (words.containsKey(word)) {
                 numberOfOccurrences = words.get(word);
                 numberOfOccurrences++;
                 words.put(word, numberOfOccurrences);
-            }else{
+            } else {
                 numberOfOccurrences = 1;
                 words.put(word, numberOfOccurrences);
             }
         }
+    }
+
+    private boolean checkIfNotNullOrEmptyString(String word) {
+        return word != null && word.length() > 0;
     }
 
     public Map<String, Integer> getWords() {
