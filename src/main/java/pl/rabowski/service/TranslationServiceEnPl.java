@@ -1,13 +1,13 @@
 package pl.rabowski.service;
 
+import pl.rabowski.util.CommonVariables;
+
 public class TranslationServiceEnPl implements TranslationService{
     @Override
-    public void translate(String word, String language) {
-
-    }
-
-    @Override
-    public String checkLanguage(String word) {
-        return null;
+    public String translate(String word) {
+        if(CommonVariables.enPlDictionary.containsKey(word)){
+            return CommonVariables.enPlDictionary.get(word);
+        }
+        return word;
     }
 }

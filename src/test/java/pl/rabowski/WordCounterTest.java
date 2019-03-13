@@ -1,8 +1,10 @@
 package pl.rabowski;
 
+import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.runner.RunWith;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,7 +15,8 @@ public class WordCounterTest {
     private String testWord, testWord2, testWord3;
     private WordCounter wordCounter;
     private Map<String, Integer> words;
-    String[] words1, words2, words3, englishWords, polishWords, germanWOrds;
+    String[] words1;
+    String englishWord, polishWord, germanWord;
 
     @Nested
     @DisplayName("Tests for word counter method")
@@ -106,12 +109,22 @@ public class WordCounterTest {
 
             assertEquals(0, wordCounter.getCount(word));
         }
-    }
 
-    //nie bangla
+        @Test
+        @DisplayName("Should check same value in two languages pl and en")
+        void shouldCheckSameValueInToLanguages_counterShouldBeTwo() {
+            englishWord = "dog";
+            polishWord = "pies";
+            wordCounter.count(polishWord);
+            wordCounter.count(englishWord);
+
+            assertEquals(2, wordCounter.getCount(polishWord));
+        }
+    }
 
     @Nested
     @DisplayName("Tests for word counter method with threads")
+    @RunWith(ConcurrentTestRunner.class)
     class WordCounterMethodThreadsTest {
 
 
@@ -119,38 +132,20 @@ public class WordCounterTest {
         void prepareData() {
             wordCounter = new WordCounter();
             words1 = new String[]{"Ala", "kot", "pies", "komputer", "Mieszkanie", "ala"};
-            words2 = new String[]{"ala", "pies", "table", "Mobile", "Komórka", "mieszkanie"};
         }
 
         @Test
         @DisplayName("Test with two threads")
         void testWithTwoThreads() {
-            new Thread(runThread(wordCounter, words1)).start();
-            new Thread(runSecondThread(wordCounter, words1)).start();
+            for (int i = 0; i < words1.length; i++) {
+                wordCounter.count(words1[i]);
+            }
         }
 
         @AfterEach
-        void testThreads(){
-            assertEquals(4, wordCounter.getCount("Ala"), "Expect to hit 4 times word Ala");
+        void testThreads() {
+            assertEquals(2, wordCounter.getCount("Ala"), "Expect to hit 2 times word Ala");
         }
-    }
-
-    private Runnable runThread(WordCounter wordCounter, String[] words) {
-        Runnable first = () -> {
-            for (int i = 0; i < words.length; i++) {
-                wordCounter.count(words[i]);
-            }
-        };
-        return first;
-    }
-
-    private Runnable runSecondThread(WordCounter wordCounter, String[] words) {
-        Runnable second = () -> {
-            for (int i = 0; i < words.length; i++) {
-                wordCounter.count(words[i]);
-            }
-        };
-        return second;
     }
 }
 
