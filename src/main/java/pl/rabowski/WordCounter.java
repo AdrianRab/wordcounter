@@ -1,33 +1,60 @@
 package pl.rabowski;
 
+import pl.rabowski.service.TranslationService;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WordCounter {
+    private TranslationService translationService;
     private Map<String, Integer> words = new ConcurrentHashMap<>();
-    private int numberOfOccurrences;
+    private final String REGEX = "^\\p{L}*$";
 
-    public int getCount(String word) {
-        count(word);
-        return numberOfOccurrences;
+    public WordCounter(Map<String, Integer> words) {
+        this.words = words;
     }
 
-    //zrobic public i osobno wywolywac w testach? Do przemyslenia.
-    private void count(String word) {
-        if (checkIfNotNullOrEmptyString(word)) {
-            if (words.containsKey(word)) {
-                numberOfOccurrences = words.get(word);
-                numberOfOccurrences++;
-                words.put(word, numberOfOccurrences);
+    public WordCounter() {
+    }
+
+    //TODO regex + translation + threads
+
+
+    public int getCount(String word) {
+        if (checkIfValidWord(word)) {
+
+            String parsedWord = word.toLowerCase().trim();
+
+            if (words.containsKey(parsedWord)) {
+                return words.get(parsedWord);
+            }
+        }
+        return 0;
+    }
+
+    public void count(String word) {
+        if (checkIfValidWord(word)) {
+
+            String parsedWord = word.toLowerCase().trim();
+
+            if (words.containsKey(parsedWord)) {
+                words.put(parsedWord, words.get(parsedWord) + 1);
             } else {
-                numberOfOccurrences = 1;
-                words.put(word, numberOfOccurrences);
+                words.put(parsedWord, 1);
             }
         }
     }
 
-    private boolean checkIfNotNullOrEmptyString(String word) {
-        return word != null && word.length() > 0;
+    private boolean checkIfValidWord(String word) {
+        if (word != null && word.length() > 0) {
+            Pattern pattern = Pattern.compile(REGEX);
+
+            Matcher matcher = pattern.matcher(word);
+            return matcher.matches();
+        }
+        return false;
     }
 
     public Map<String, Integer> getWords() {
