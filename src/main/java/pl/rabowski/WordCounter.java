@@ -48,17 +48,17 @@ public class WordCounter {
             if (words.containsKey(parsedWord)) {
                 words.put(parsedWord, words.get(parsedWord) + 1);
             } else if (language.equals("DE") && CommonVariables.dePLDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.dePLDictionary.get(parsedWord).toLowerCase())) {
-                words.put(CommonVariables.dePLDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.dePLDictionary.get(parsedWord)) + 1);
+                words.put(CommonVariables.dePLDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.dePLDictionary.get(parsedWord).toLowerCase()) + 1);
             } else if (language.equals("DE") && CommonVariables.deEnDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase())) {
-                words.put(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.deEnDictionary.get(parsedWord)) + 1);
+                words.put(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase()) + 1);
             } else if (language.equals("EN") && CommonVariables.enDeDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase())) {
-                words.put(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enDeDictionary.get(parsedWord)) + 1);
+                words.put(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase()) + 1);
             } else if (language.equals("EN") && CommonVariables.enPlDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase())) {
-                words.put(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enPlDictionary.get(parsedWord.toLowerCase())) + 1);
+                words.put(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase()) + 1);
             } else if (language.equals("PL") && CommonVariables.plDeDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase())) {
-                words.put(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.plDeDictionary.get(parsedWord)) + 1);
+                words.put(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase()) + 1);
             } else if (language.equals("PL") && CommonVariables.plEnDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase())) {
-                words.put(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.plEnDictionary.get(parsedWord)) + 1);
+                words.put(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase()) + 1);
             } else {
                 words.put(parsedWord, 1);
             }
