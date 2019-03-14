@@ -1,6 +1,6 @@
 package pl.rabowski;
 
-import pl.rabowski.util.CommonVariables;
+import pl.rabowski.service.TranslationService;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,11 +8,11 @@ public class Main {
         new Thread(runFirstThread(wordCounter)).start();
         new Thread(runSecondThread(wordCounter)).start();
 
-        System.out.println(CommonVariables.deEnDictionary);
-        System.out.println(CommonVariables.enDeDictionary);
+        System.out.println(TranslationService.deEnDictionary);
+        System.out.println(TranslationService.enDeDictionary);
 
-        System.out.println(CommonVariables.enPlPlEnDictionary);
-        System.out.println(CommonVariables.dePlPlDeDictionary);
+        System.out.println(TranslationService.enPlPlEnDictionary);
+        System.out.println(TranslationService.dePlPlDeDictionary);
     }
 
     private static Runnable runFirstThread(WordCounter wordCounter) {

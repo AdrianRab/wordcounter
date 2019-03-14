@@ -3,12 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="168f52b0-2073-44bb-b1a6-1e2c808e388d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/rabowski/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/rabowski/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServiceEnDe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServiceEnPl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServicePlEn.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pl/rabowski/util/CommonVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/rabowski/util/CommonVariables.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pl/rabowski/WordCounterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/rabowski/WordCounterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/rabowski/WordCounter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/rabowski/WordCounter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pl/rabowski/service/TranslationServiceEnDe.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pl/rabowski/util/CommonVariables.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pl/rabowski/util/CommonVariables.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -34,34 +35,60 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="1" />
-          <entry key="java" value="3" />
+          <entry key="java" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="3" />
+          <entry key="JAVA" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1215" />
+          <entry key="dummy" value="1" />
+          <entry key="java" value="1272" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1215" />
+          <entry key="JAVA" value="1272" />
+          <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/pl/rabowski/WordCounterTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="587">
-              <caret line="222" column="31" lean-forward="true" selection-start-line="222" selection-start-column="31" selection-end-line="222" selection-end-column="31" />
+            <state relative-caret-position="195">
+              <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-85">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,34 +99,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/util/CommonVariables.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="34" column="117" lean-forward="true" selection-start-line="34" selection-start-column="117" selection-end-line="34" selection-end-column="117" />
+            <state relative-caret-position="340">
+              <caret line="20" column="88" selection-start-line="20" selection-start-column="88" selection-end-line="20" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="28" column="51" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/exceptions/WordValidationException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-              <folding>
-                <element signature="e#140#141#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,26 +111,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-255">
-              <caret line="6" column="52" lean-forward="true" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServicePlEn.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServiceEnPl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="61" lean-forward="true" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
+              <caret line="6" column="52" lean-forward="true" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -149,6 +134,9 @@
       <find>deEnDictionary</find>
       <find>dePLDictionary</find>
     </findStrings>
+    <replaceStrings>
+      <replace>TranslationService</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -159,7 +147,6 @@
         <option value="$PROJECT_DIR$/src/test/java/WordCounterTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/util/Util.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/util/LanguageAcronyms.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServiceEnDe.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServiceDePl.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServiceDeEn.java" />
@@ -168,10 +155,12 @@
         <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServicePlEn.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/exceptions/WordValidationException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/util/CommonVariables.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java" />
         <option value="$PROJECT_DIR$/src/test/java/pl/rabowski/WordCounterTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/util/CommonVariables.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslatioNService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java" />
       </list>
     </option>
   </component>
@@ -299,7 +288,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552561186403" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552562151671" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -322,7 +311,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.WordCounterTest$WordCounterMethodTest.shouldCheckSameValueInAllLanguages_counterShouldBeThree">
+  <component name="RunManager" selected="JUnit.WordCounterTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pl.rabowski.Main" />
       <module name="word-counter" />
@@ -405,10 +394,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WordCounterTest" />
         <item itemvalue="JUnit.WordCounterTest$WordCounterMethodTest.shouldCheckSameValueInAllLanguages_counterShouldBeThree" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.WordCounterTest$WordCounterTestWithoutConcurrentTest" />
-        <item itemvalue="JUnit.WordCounterTest" />
         <item itemvalue="JUnit.WordCounterTest$WordCounterTestWithoutConcurrentTest.testWithTwoThreads" />
       </list>
     </recent_temporary>
@@ -427,21 +416,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="WordCounterTest - 2019.03.14 at 11h 39m 31s.xml">
-      <configuration name="WordCounterTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="WordCounterTest$WordCounterTestWithoutConcurrentTest_testWithTwoThreads - 2019.03.14 at 11h 47m 28s.xml">
-      <configuration name="WordCounterTest$WordCounterTestWithoutConcurrentTest.testWithTwoThreads" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="WordCounterTest$WordCounterTestWithoutConcurrentTest_testWithTwoThreads - 2019.03.14 at 11h 47m 35s.xml">
-      <configuration name="WordCounterTest$WordCounterTestWithoutConcurrentTest.testWithTwoThreads" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="WordCounterTest$WordCounterTestWithoutConcurrentTest_testWithTwoThreads - 2019.03.14 at 11h 50m 19s.xml">
-      <configuration name="WordCounterTest$WordCounterTestWithoutConcurrentTest.testWithTwoThreads" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="WordCounterTest$WordCounterTestWithoutConcurrentTest_testWithTwoThreads - 2019.03.14 at 11h 50m 33s.xml">
-      <configuration name="WordCounterTest$WordCounterTestWithoutConcurrentTest.testWithTwoThreads" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="WordCounterTest$WordCounterTestWithoutConcurrentTest_testWithTwoThreads - 2019.03.14 at 11h 50m 35s.xml">
       <configuration name="WordCounterTest$WordCounterTestWithoutConcurrentTest.testWithTwoThreads" configurationId="JUnit" />
     </history-entry>
@@ -457,6 +431,21 @@
     <history-entry file="WordCounterTest - 2019.03.14 at 11h 53m 25s.xml">
       <configuration name="WordCounterTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="WordCounterTest$WordCounterTestWithoutConcurrentTest - 2019.03.14 at 11h 58m 17s.xml">
+      <configuration name="WordCounterTest$WordCounterTestWithoutConcurrentTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WordCounterTest$WordCounterTestWithoutConcurrentTest - 2019.03.14 at 11h 59m 35s.xml">
+      <configuration name="WordCounterTest$WordCounterTestWithoutConcurrentTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WordCounterTest$WordCounterMethodTest_shouldCheckSameValueInAllLanguages_counterShouldBeThree - 2019.03.14 at 12h 00m 41s.xml">
+      <configuration name="WordCounterTest$WordCounterMethodTest.shouldCheckSameValueInAllLanguages_counterShouldBeThree" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WordCounterTest - 2019.03.14 at 12h 05m 39s.xml">
+      <configuration name="WordCounterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="WordCounterTest - 2019.03.14 at 12h 07m 38s.xml">
+      <configuration name="WordCounterTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -466,7 +455,7 @@
       <window_info id="Job Explorer" order="1" />
       <window_info id="Learn" order="2" weight="0.32995737" />
       <window_info id="DB Browser" order="3" />
-      <window_info content_ui="combo" id="Project" order="4" visible="true" weight="0.20575693" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.20575693" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="6" />
       <window_info id="Designer" order="7" />
@@ -476,7 +465,7 @@
       <window_info anchor="bottom" id="Console" order="0" />
       <window_info anchor="bottom" id="DB Execution Console" order="1" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32900432" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.32321042" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.31127983" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3286334" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="6" weight="0.3286334" />
@@ -505,55 +494,55 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java</url>
-          <line>46</line>
+          <line>47</line>
           <properties />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java</url>
-          <line>83</line>
+          <line>84</line>
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java</url>
-          <line>86</line>
+          <line>87</line>
           <properties />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java</url>
-          <line>79</line>
+          <line>80</line>
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java</url>
-          <line>74</line>
+          <line>75</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java</url>
-          <line>69</line>
+          <line>70</line>
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java</url>
-          <line>64</line>
+          <line>65</line>
           <properties />
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java</url>
-          <line>59</line>
+          <line>60</line>
           <properties />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java</url>
-          <line>53</line>
+          <line>54</line>
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
@@ -563,13 +552,6 @@
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/util/concurrent/ConcurrentHashMap.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/util/LanguageAcronyms.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServiceDePl.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServiceDeEn.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServicePlDe.java" />
@@ -582,13 +564,6 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.1.1/junit-jupiter-engine-5.1.1.jar!/org/junit/jupiter/engine/descriptor/TestMethodTestDescriptor.class" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.1.1/junit-jupiter-engine-5.1.1.jar!/org/junit/jupiter/engine/execution/ThrowableCollector.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="6" column="52" lean-forward="true" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_172/src.zip!/java/lang/Thread.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="563">
@@ -633,35 +608,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationServicePlEn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/util/CommonVariables.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="34" column="117" lean-forward="true" selection-start-line="34" selection-start-column="117" selection-end-line="34" selection-end-column="117" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="28" column="51" lean-forward="true" selection-start-line="28" selection-start-column="51" selection-end-line="28" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/pl/rabowski/WordCounterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="222" column="31" lean-forward="true" selection-start-line="222" selection-start-column="31" selection-end-line="222" selection-end-column="31" />
+        <state relative-caret-position="195">
+          <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/util/CommonVariables.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="88" selection-start-line="20" selection-start-column="88" selection-end-line="20" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/service/TranslationService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="52" lean-forward="true" selection-start-line="6" selection-start-column="52" selection-end-line="6" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/rabowski/WordCounter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="16" column="38" lean-forward="true" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

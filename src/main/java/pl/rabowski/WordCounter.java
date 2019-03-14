@@ -5,21 +5,21 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import pl.rabowski.exceptions.WordValidationException;
+import pl.rabowski.service.TranslationService;
 import pl.rabowski.util.CommonVariables;
 
 public class WordCounter {
     private Map<String, Integer> words = new ConcurrentHashMap<>();
 
-    //TODO translation + threads
-
+    //TODO translation
 
     public int getCount(String word) {
         if (checkIfValidWord(word)) {
             String parsedWord = word.toLowerCase().trim();
 
-            String wordInEnglishOrGerman = CommonVariables.deEnEnDeDictionary.get(parsedWord);
-            String wordInPolishOrEnglish = CommonVariables.enPlPlEnDictionary.get(parsedWord);
-            String wordInPolishOrGerman = CommonVariables.dePlPlDeDictionary.get(parsedWord);
+            String wordInEnglishOrGerman = TranslationService.deEnEnDeDictionary.get(parsedWord);
+            String wordInPolishOrEnglish = TranslationService.enPlPlEnDictionary.get(parsedWord);
+            String wordInPolishOrGerman = TranslationService.dePlPlDeDictionary.get(parsedWord);
 
             if (words.containsKey(parsedWord)) {
                 return words.get(parsedWord);
@@ -53,35 +53,35 @@ public class WordCounter {
             if (words.containsKey(parsedWord)) {
                 words.put(parsedWord, words.get(parsedWord) + 1);
 
-            } else if (language.equals("DE") && CommonVariables.dePLDictionary.get(parsedWord.toLowerCase()) != null
-                    && words.containsKey(CommonVariables.dePLDictionary.get(parsedWord).toLowerCase())) {
-                System.out.println(CommonVariables.dePLDictionary.get(parsedWord).toLowerCase());
-                translatedWord = CommonVariables.dePLDictionary.get(parsedWord).toLowerCase();
+            } else if (language.equals("DE") && TranslationService.dePLDictionary.get(parsedWord.toLowerCase()) != null
+                    && words.containsKey(TranslationService.dePLDictionary.get(parsedWord).toLowerCase())) {
+                System.out.println(TranslationService.dePLDictionary.get(parsedWord).toLowerCase());
+                translatedWord = TranslationService.dePLDictionary.get(parsedWord).toLowerCase();
                 words.put(translatedWord, words.get(translatedWord) + 1);
 
-            } else if (language.equals("DE") && CommonVariables.deEnDictionary.get(parsedWord.toLowerCase()) != null
-                    && words.containsKey(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase())) {
-                System.out.println(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase());
-                words.put(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase()) + 1);
+            } else if (language.equals("DE") && TranslationService.deEnDictionary.get(parsedWord.toLowerCase()) != null
+                    && words.containsKey(TranslationService.deEnDictionary.get(parsedWord).toLowerCase())) {
+                System.out.println(TranslationService.deEnDictionary.get(parsedWord).toLowerCase());
+                words.put(TranslationService.deEnDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.deEnDictionary.get(parsedWord).toLowerCase()) + 1);
 
-            } else if (language.equals("EN") && CommonVariables.enDeDictionary.get(parsedWord.toLowerCase()) != null
-                    && words.containsKey(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase())) {
-                System.out.println(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase());
-                words.put(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase()) + 1);
+            } else if (language.equals("EN") && TranslationService.enDeDictionary.get(parsedWord.toLowerCase()) != null
+                    && words.containsKey(TranslationService.enDeDictionary.get(parsedWord).toLowerCase())) {
+                System.out.println(TranslationService.enDeDictionary.get(parsedWord).toLowerCase());
+                words.put(TranslationService.enDeDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.enDeDictionary.get(parsedWord).toLowerCase()) + 1);
 
-            } else if (language.equals("EN") && CommonVariables.enPlDictionary.get(parsedWord.toLowerCase()) != null
-                    && words.containsKey(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase())) {
-                System.out.println(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase());
-                words.put(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase()) + 1);
+            } else if (language.equals("EN") && TranslationService.enPlDictionary.get(parsedWord.toLowerCase()) != null
+                    && words.containsKey(TranslationService.enPlDictionary.get(parsedWord).toLowerCase())) {
+                System.out.println(TranslationService.enPlDictionary.get(parsedWord).toLowerCase());
+                words.put(TranslationService.enPlDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.enPlDictionary.get(parsedWord).toLowerCase()) + 1);
 
-            } else if (language.equals("PL") && CommonVariables.plDeDictionary.get(parsedWord.toLowerCase()) != null
-                    && words.containsKey(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase())) {
-                System.out.println(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase());
-                words.put(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase()) + 1);
+            } else if (language.equals("PL") && TranslationService.plDeDictionary.get(parsedWord.toLowerCase()) != null
+                    && words.containsKey(TranslationService.plDeDictionary.get(parsedWord).toLowerCase())) {
+                System.out.println(TranslationService.plDeDictionary.get(parsedWord).toLowerCase());
+                words.put(TranslationService.plDeDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.plDeDictionary.get(parsedWord).toLowerCase()) + 1);
 
-            } else if (language.equals("PL") && CommonVariables.plEnDictionary.get(parsedWord.toLowerCase()) != null
-                    && words.containsKey(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase())) {
-                words.put(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase()) + 1);
+            } else if (language.equals("PL") && TranslationService.plEnDictionary.get(parsedWord.toLowerCase()) != null
+                    && words.containsKey(TranslationService.plEnDictionary.get(parsedWord).toLowerCase())) {
+                words.put(TranslationService.plEnDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.plEnDictionary.get(parsedWord).toLowerCase()) + 1);
 
             } else {
                 words.put(parsedWord, 1);
