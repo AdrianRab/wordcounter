@@ -1,22 +1,27 @@
 package pl.rabowski;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
-import org.junit.jupiter.api.*;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import pl.rabowski.exceptions.WordValidationException;
 
 public class WordCounterTest {
+    String[] words1;
+    String englishWord, polishWord, germanWord;
     private String testWord, testWord2, testWord3;
     private WordCounter wordCounter;
     private Map<String, Integer> words;
-    String[] words1;
-    String englishWord, polishWord, germanWord;
 
     @Nested
     @DisplayName("Tests for word counter method")
@@ -33,7 +38,7 @@ public class WordCounterTest {
 
         @Test
         @DisplayName("Should return one occurrence")
-        void wordHasOneOccurrence() {
+        void wordHasOneOccurrence() throws WordValidationException {
             wordCounter.count(testWord);
 
             assertEquals(1, wordCounter.getCount(testWord));
@@ -41,7 +46,7 @@ public class WordCounterTest {
 
         @Test
         @DisplayName("Should return two occurrences")
-        void wordHasTwoOccurrences() {
+        void wordHasTwoOccurrences() throws WordValidationException {
             words.put(testWord, 1);
             words.put(testWord2, 5);
             wordCounter.setWords(words);
@@ -53,7 +58,7 @@ public class WordCounterTest {
 
         @Test
         @DisplayName("Should return three occurrences when inserting two String objects with same value")
-        void wordHasThreeOccurrences() {
+        void wordHasThreeOccurrences() throws WordValidationException {
             words.put(testWord, 1);
             words.put(testWord3, 2);
             wordCounter.setWords(words);
@@ -66,7 +71,7 @@ public class WordCounterTest {
         @ParameterizedTest
         @DisplayName("Should check ten different strings and return one for each")
         @ValueSource(strings = {"Honig", "test", "BIGLETTER", "smallletter", "space", "universe", "Ala", "Żyła", "Brötchen"})
-        void shouldCheckOccurrenceForTenWords_counterShouldBeOne(String word) {
+        void shouldCheckOccurrenceForTenWords_counterShouldBeOne(String word) throws WordValidationException {
             wordCounter.count(word);
 
             assertEquals(1, wordCounter.getCount(word));
@@ -75,7 +80,7 @@ public class WordCounterTest {
         @ParameterizedTest
         @DisplayName("Should check ten the same strings and return one for each")
         @ValueSource(strings = {"test", "test", "test", "test", "test", "test", "test", "test", "test"})
-        void shouldCheckOccurrenceForTenSameWords_counterShouldBeOne(String word) {
+        void shouldCheckOccurrenceForTenSameWords_counterShouldBeOne(String word) throws WordValidationException {
             wordCounter.count(word);
 
             assertEquals(1, wordCounter.getCount(word));
@@ -84,18 +89,34 @@ public class WordCounterTest {
         @ParameterizedTest
         @DisplayName("Should check special characters and not accept them")
         @ValueSource(strings = {" ", "   ", "\t", "\n", "\r"})
-        void shouldCheckOccurrenceForTenSpecialCharacters_counterShouldBeZero(String word) {
-            wordCounter.count(word);
+        void shouldCheckOccurrenceForTenSpecialCharacters_counterShouldBeZero(String word) throws WordValidationException {
+            try {
+                wordCounter.count(word);
+            } catch (Exception e) {
+                e.getMessage();
+            }
 
             assertEquals(0, wordCounter.getCount(word));
         }
 
+        @ParameterizedTest
+        @DisplayName("Should throw an exception when invalid word is passed")
+        @ValueSource(strings = {" ", "   ", "\t", "\n", "\r", "", "123", "%32", " r ", "^", "!", ","})
+        void shouldCheckIfWordIsValidAndThrowAndException(String word) throws WordValidationException {
+
+            assertThrows(WordValidationException.class, () -> wordCounter.count(word));
+        }
+
         @Test
         @DisplayName("Should check null and return zero")
-        void shouldCheckOccurrenceForNull_counterShouldBeZero() {
+        void shouldCheckOccurrenceForNull_counterShouldBeZero() throws WordValidationException {
             String word = null;
 
-            wordCounter.count(word);
+            try {
+                wordCounter.count(word);
+            } catch (Exception e) {
+                e.getMessage();
+            }
 
             assertEquals(0, wordCounter.getCount(word));
         }
@@ -105,14 +126,18 @@ public class WordCounterTest {
         void shouldCheckOccurrenceForEmptyString_counterShouldBeZero() {
             String word = "";
 
-            wordCounter.count(word);
+            try {
+                wordCounter.count(word);
+            } catch (Exception e) {
+                e.getMessage();
+            }
 
             assertEquals(0, wordCounter.getCount(word));
         }
 
         @Test
         @DisplayName("Should check same value in two languages pl and en")
-        void shouldCheckSameValueInTwoLanguages_counterShouldBeTwo() {
+        void shouldCheckSameValueInTwoLanguages_counterShouldBeTwo() throws WordValidationException {
             englishWord = "dog";
             polishWord = "pies";
             wordCounter.count(polishWord);
@@ -123,7 +148,7 @@ public class WordCounterTest {
 
         @Test
         @DisplayName("Should check same value in two languages pl and en")
-        void shouldCheckSameValueInAllLanguages_counterShouldBeThree() {
+        void shouldCheckSameValueInAllLanguages_counterShouldBeThree() throws WordValidationException {
             englishWord = "dictionary";
             polishWord = "słownik";
             germanWord = "Wörterbuch";
@@ -152,7 +177,7 @@ public class WordCounterTest {
 
         @Test
         @DisplayName("Test with two threads")
-        void testWithTwoThreads() {
+        void testWithTwoThreads() throws WordValidationException {
             for (int i = 0; i < words1.length; i++) {
                 wordCounter.count(words1[i]);
             }

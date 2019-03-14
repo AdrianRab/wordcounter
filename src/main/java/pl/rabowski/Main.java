@@ -15,30 +15,39 @@ public class Main {
         System.out.println(CommonVariables.dePlPlDeDictionary);
     }
 
-    private static Runnable runFirstThread(WordCounter wordCounter){
+    private static Runnable runFirstThread(WordCounter wordCounter) {
         Runnable first = () -> {
             String[] words = {"ala", "kot", "masło", "Ala"};
-            for (int i = 0; i < words.length; i++) {
-                wordCounter.count(words[i]);
+            try {
+                for (int i = 0; i < words.length; i++) {
+                    wordCounter.count(words[i]);
+                }
+
+                for (int j = 0; j < words.length; j++) {
+                    System.out.println("pierwsza lista słowo: " + words[j] + " ilość występowania: " + wordCounter.getCount(words[j]));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
 
-            for (int j = 0; j < words.length; j++) {
-                System.out.println("pierwsza lista słowo: " + words[j] + " ilość występowania: " + wordCounter.getCount(words[j]));
-            }
 
         };
         return first;
     }
 
-    private static Runnable runSecondThread(WordCounter wordCounter){
+    private static Runnable runSecondThread(WordCounter wordCounter) {
         Runnable second = () -> {
             String[] word2 = {"ala", "kot", "test", "ala"};
-            for (int i = 0; i < word2.length; i++) {
-                wordCounter.count(word2[i]);
-            }
+            try {
+                for (int i = 0; i < word2.length; i++) {
+                    wordCounter.count(word2[i]);
+                }
 
-            for (int j = 0; j < word2.length; j++) {
-                System.out.println("druga lista słowo " + word2[j] + " ilość występowania: " + wordCounter.getCount(word2[j]));
+                for (int j = 0; j < word2.length; j++) {
+                    System.out.println("druga lista słowo " + word2[j] + " ilość występowania: " + wordCounter.getCount(word2[j]));
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         };
 

@@ -1,5 +1,6 @@
 package pl.rabowski;
 
+import pl.rabowski.exceptions.WordValidationException;
 import pl.rabowski.service.TranslationService;
 import pl.rabowski.util.CommonVariables;
 
@@ -38,7 +39,7 @@ public class WordCounter {
         return 0;
     }
 
-    public void count(String word) {
+    public void count(String word) throws WordValidationException{
         if (checkIfValidWord(word)) {
 
             String parsedWord = word.toLowerCase().trim();
@@ -61,6 +62,8 @@ public class WordCounter {
             } else {
                 words.put(parsedWord, 1);
             }
+        } else{
+            throw new WordValidationException("Word: " +  word + ", has incorrect format");
         }
     }
 
