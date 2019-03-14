@@ -49,15 +49,15 @@ public class WordCounter {
                 words.put(parsedWord, words.get(parsedWord) + 1);
             } else if (language.equals("DE") && CommonVariables.dePLDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.dePLDictionary.get(parsedWord).toLowerCase())) {
                 words.put(CommonVariables.dePLDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.dePLDictionary.get(parsedWord)) + 1);
-            } else if (language.equals("DE") && CommonVariables.deEnDictionary.get(parsedWord) != null && words.containsKey(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase())) {
+            } else if (language.equals("DE") && CommonVariables.deEnDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase())) {
                 words.put(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.deEnDictionary.get(parsedWord)) + 1);
-            } else if (language.equals("EN") && CommonVariables.enDeDictionary.get(parsedWord) != null && words.containsKey(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase())) {
+            } else if (language.equals("EN") && CommonVariables.enDeDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase())) {
                 words.put(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enDeDictionary.get(parsedWord)) + 1);
-            } else if (language.equals("EN") && CommonVariables.enPlDictionary.get(parsedWord) != null && words.containsKey(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase())) {
-                words.put(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enPlDictionary.get(parsedWord)) + 1);
-            } else if (language.equals("PL") && CommonVariables.plDeDictionary.get(parsedWord) != null && words.containsKey(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase())) {
+            } else if (language.equals("EN") && CommonVariables.enPlDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase())) {
+                words.put(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enPlDictionary.get(parsedWord.toLowerCase())) + 1);
+            } else if (language.equals("PL") && CommonVariables.plDeDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase())) {
                 words.put(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.plDeDictionary.get(parsedWord)) + 1);
-            } else if (language.equals("PL") && CommonVariables.plEnDictionary.get(parsedWord) != null && words.containsKey(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase())) {
+            } else if (language.equals("PL") && CommonVariables.plEnDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase())) {
                 words.put(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.plEnDictionary.get(parsedWord)) + 1);
             } else {
                 words.put(parsedWord, 1);
@@ -77,11 +77,11 @@ public class WordCounter {
     }
 
     private String checkLanguage(String word) {
-        if (CommonVariables.englishWords.stream().anyMatch(w -> w.equalsIgnoreCase(word))) {
+        if (CommonVariables.englishWords.stream().anyMatch(w -> w.toLowerCase().equalsIgnoreCase(word))) {
             return "EN";
-        } else if (CommonVariables.germanWords.stream().anyMatch(w -> w.equalsIgnoreCase(word))) {
+        } else if (CommonVariables.germanWords.stream().anyMatch(w -> w.toLowerCase().equalsIgnoreCase(word))) {
             return "DE";
-        } else if (CommonVariables.polishWords.stream().anyMatch(w -> w.equalsIgnoreCase(word))) {
+        } else if (CommonVariables.polishWords.stream().anyMatch(w -> w.toLowerCase().equalsIgnoreCase(word))) {
             return "PL";
         }
         return "";

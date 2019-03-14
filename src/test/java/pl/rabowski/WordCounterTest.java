@@ -6,8 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -186,6 +188,43 @@ public class WordCounterTest {
         @AfterEach
         void testThreads() {
             assertEquals(2, wordCounter.getCount("Ala"), "Expect to hit 2 times word Ala");
+        }
+    }
+
+    @Nested
+    @DisplayName("Second test for threads")
+    class WordCounterTestWithoutConcurrentTest {
+
+        @BeforeEach
+        void prepareData() {
+            wordCounter = new WordCounter();
+            words1 = new String[]{"Ala", "kot", "pies", "komputer", "Mieszkanie", "ala"};
+        }
+
+        @Test
+        @DisplayName("Test with two threads")
+        void testWithTwoThreads() throws InterruptedException{
+            CountDownLatch cdl = new CountDownLatch(2);
+            Thread firsThread = new Thread(runThread(wordCounter, words1, cdl));
+            Thread secondThread = new Thread(runThread(wordCounter, words1, cdl));
+            firsThread.start();
+            secondThread.start();
+            cdl.await();
+            assertEquals(4, wordCounter.getCount("Ala"), "Expect to hit 4 times word Ala");
+        }
+
+        private Runnable runThread(WordCounter wordCounter, String[] words, CountDownLatch countDownLatch) {
+            Runnable first = () -> {
+                try {
+                    for (int i = 0; i < words.length; i++) {
+                        wordCounter.count(words[i]);
+                    }
+                    countDownLatch.countDown();
+                } catch (Exception e) {
+                    e.getMessage();
+                }
+            };
+            return first;
         }
     }
 }
