@@ -8,8 +8,11 @@ public class Main {
         new Thread(runFirstThread(wordCounter)).start();
         new Thread(runSecondThread(wordCounter)).start();
 
-        System.out.println(CommonVariables.plEnDictionary);
-        System.out.println(CommonVariables.enPlDictionary);
+        System.out.println(CommonVariables.deEnDictionary);
+        System.out.println(CommonVariables.enDeDictionary);
+
+        System.out.println(CommonVariables.enPlPlEnDictionary);
+        System.out.println(CommonVariables.dePlPlDeDictionary);
     }
 
     private static Runnable runFirstThread(WordCounter wordCounter){

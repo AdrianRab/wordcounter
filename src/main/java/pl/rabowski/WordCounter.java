@@ -1,8 +1,6 @@
 package pl.rabowski;
 
 import pl.rabowski.service.TranslationService;
-import pl.rabowski.service.TranslationServiceEnPl;
-import pl.rabowski.service.TranslationServicePlEn;
 import pl.rabowski.util.CommonVariables;
 
 import java.util.Map;
@@ -20,10 +18,21 @@ public class WordCounter {
     public int getCount(String word) {
         if (checkIfValidWord(word)) {
             String parsedWord = word.toLowerCase().trim();
-            String language = checkLanguage(parsedWord);
-            String translatedWord = translateWord(parsedWord, language);
-            if (words.containsKey(translatedWord)) {
-                return words.get(translatedWord);
+
+            String wordInEnglishOrGerman = CommonVariables.deEnEnDeDictionary.get(parsedWord);
+            String wordInPolishOrEnglish = CommonVariables.enPlPlEnDictionary.get(parsedWord);
+            String wordInPolishOrGerman = CommonVariables.dePlPlDeDictionary.get(parsedWord);
+
+            System.out.println(CommonVariables.deEnDictionary.entrySet().stream().anyMatch(e->e.getKey().equalsIgnoreCase(parsedWord)));
+
+            if (words.containsKey(parsedWord)) {
+                return words.get(parsedWord);
+            } else if (wordInEnglishOrGerman != null && words.containsKey(wordInEnglishOrGerman.toLowerCase())) {
+                return words.get(wordInEnglishOrGerman.toLowerCase());
+            } else if (wordInPolishOrEnglish != null && words.containsKey(wordInPolishOrEnglish.toLowerCase())) {
+                return words.get(wordInPolishOrEnglish.toLowerCase());
+            } else if (wordInPolishOrGerman != null && words.containsKey(wordInPolishOrGerman.toLowerCase())) {
+                return words.get(wordInPolishOrEnglish.toLowerCase());
             }
         }
         return 0;
@@ -34,12 +43,23 @@ public class WordCounter {
 
             String parsedWord = word.toLowerCase().trim();
             String language = checkLanguage(parsedWord);
-            String translatedWord = translateWord(parsedWord, language).toLowerCase();
 
-            if (words.containsKey(translatedWord) || words.containsKey(parsedWord)) {
-                words.put(translatedWord, words.get(translatedWord) + 1);
+            if (words.containsKey(parsedWord)) {
+                words.put(parsedWord, words.get(parsedWord) + 1);
+            } else if (language.equals("DE") && CommonVariables.dePLDictionary.get(parsedWord.toLowerCase()) != null && words.containsKey(CommonVariables.dePLDictionary.get(parsedWord).toLowerCase())) {
+                words.put(CommonVariables.dePLDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.dePLDictionary.get(parsedWord)) + 1);
+            } else if (language.equals("DE") && CommonVariables.deEnDictionary.get(parsedWord) != null && words.containsKey(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase())) {
+                words.put(CommonVariables.deEnDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.deEnDictionary.get(parsedWord)) + 1);
+            } else if (language.equals("EN") && CommonVariables.enDeDictionary.get(parsedWord) != null && words.containsKey(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase())) {
+                words.put(CommonVariables.enDeDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enDeDictionary.get(parsedWord)) + 1);
+            } else if (language.equals("EN") && CommonVariables.enPlDictionary.get(parsedWord) != null && words.containsKey(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase())) {
+                words.put(CommonVariables.enPlDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.enPlDictionary.get(parsedWord)) + 1);
+            } else if (language.equals("PL") && CommonVariables.plDeDictionary.get(parsedWord) != null && words.containsKey(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase())) {
+                words.put(CommonVariables.plDeDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.plDeDictionary.get(parsedWord)) + 1);
+            } else if (language.equals("PL") && CommonVariables.plEnDictionary.get(parsedWord) != null && words.containsKey(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase())) {
+                words.put(CommonVariables.plEnDictionary.get(parsedWord).toLowerCase(), words.get(CommonVariables.plEnDictionary.get(parsedWord)) + 1);
             } else {
-                words.put(translatedWord, 1);
+                words.put(parsedWord, 1);
             }
         }
     }
@@ -54,25 +74,14 @@ public class WordCounter {
     }
 
     private String checkLanguage(String word) {
-        if (CommonVariables.englishWords.contains(word)) {
+        if (CommonVariables.englishWords.stream().anyMatch(w -> w.equalsIgnoreCase(word))) {
             return "EN";
-        } else if (CommonVariables.germanWords.contains(word)) {
+        } else if (CommonVariables.germanWords.stream().anyMatch(w -> w.equalsIgnoreCase(word))) {
             return "DE";
-        } else if (CommonVariables.polishWords.contains(word)){
+        } else if (CommonVariables.polishWords.stream().anyMatch(w -> w.equalsIgnoreCase(word))) {
             return "PL";
         }
         return "";
-    }
-
-    private String translateWord(String word, String language){
-        if(language.equals("EN")){
-            translationService = new TranslationServiceEnPl();
-            return translationService.translate(word);
-        } if(language.equals("PL")){
-            translationService = new TranslationServicePlEn();
-            return translationService.translate(word);
-        }
-        return word;
     }
 
     public Map<String, Integer> getWords() {

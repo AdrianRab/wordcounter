@@ -112,13 +112,29 @@ public class WordCounterTest {
 
         @Test
         @DisplayName("Should check same value in two languages pl and en")
-        void shouldCheckSameValueInToLanguages_counterShouldBeTwo() {
+        void shouldCheckSameValueInTwoLanguages_counterShouldBeTwo() {
             englishWord = "dog";
             polishWord = "pies";
             wordCounter.count(polishWord);
             wordCounter.count(englishWord);
 
             assertEquals(2, wordCounter.getCount(polishWord));
+        }
+
+        @Test
+        @DisplayName("Should check same value in two languages pl and en")
+        void shouldCheckSameValueInAllLanguages_counterShouldBeThree() {
+            englishWord = "dictionary";
+            polishWord = "słownik";
+            germanWord = "Wörterbuch";
+            wordCounter.count(polishWord);
+            wordCounter.count(englishWord);
+            wordCounter.count(germanWord);
+
+            assertEquals(3, wordCounter.getCount(polishWord));
+            assertEquals(3, wordCounter.getCount(englishWord));
+            assertEquals(3, wordCounter.getCount(germanWord));
+
         }
     }
 
