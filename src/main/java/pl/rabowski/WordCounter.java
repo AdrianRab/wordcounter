@@ -10,8 +10,8 @@ import pl.rabowski.service.TranslationService;
 import pl.rabowski.util.CommonVariables;
 
 public class WordCounter {
-    private Map<String, Integer> words = new ConcurrentHashMap<>();
     private final ReentrantLock reentrantLock = new ReentrantLock();
+    private Map<String, Integer> words = new ConcurrentHashMap<>();
 
     public int getCount(String word) {
         if (checkIfValidWord(word)) {
@@ -49,39 +49,46 @@ public class WordCounter {
 
             String parsedWord = word.toLowerCase().trim();
             String language = checkLanguage(parsedWord);
-            String translatedWord = "";
+            String translatedWord;
 
             if (words.containsKey(parsedWord)) {
                 words.put(parsedWord, words.get(parsedWord) + 1);
 
             } else if (language.equals("DE") && TranslationService.dePLDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.dePLDictionary.get(parsedWord).toLowerCase())) {
+
                 translatedWord = TranslationService.dePLDictionary.get(parsedWord).toLowerCase();
                 words.put(translatedWord, words.get(translatedWord) + 1);
 
             } else if (language.equals("DE") && TranslationService.deEnDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.deEnDictionary.get(parsedWord).toLowerCase())) {
 
-                words.put(TranslationService.deEnDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.deEnDictionary.get(parsedWord).toLowerCase()) + 1);
+                translatedWord = TranslationService.deEnDictionary.get(parsedWord).toLowerCase();
+                words.put(translatedWord, words.get(translatedWord) + 1);
 
             } else if (language.equals("EN") && TranslationService.enDeDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.enDeDictionary.get(parsedWord).toLowerCase())) {
 
-                words.put(TranslationService.enDeDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.enDeDictionary.get(parsedWord).toLowerCase()) + 1);
+                translatedWord = TranslationService.enDeDictionary.get(parsedWord).toLowerCase();
+                words.put(translatedWord, words.get(translatedWord) + 1);
 
             } else if (language.equals("EN") && TranslationService.enPlDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.enPlDictionary.get(parsedWord).toLowerCase())) {
 
-                words.put(TranslationService.enPlDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.enPlDictionary.get(parsedWord).toLowerCase()) + 1);
+                translatedWord = TranslationService.enPlDictionary.get(parsedWord).toLowerCase();
+                words.put(translatedWord, words.get(translatedWord) + 1);
 
             } else if (language.equals("PL") && TranslationService.plDeDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.plDeDictionary.get(parsedWord).toLowerCase())) {
 
-                words.put(TranslationService.plDeDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.plDeDictionary.get(parsedWord).toLowerCase()) + 1);
+                translatedWord = TranslationService.plDeDictionary.get(parsedWord).toLowerCase();
+                words.put(translatedWord, words.get(translatedWord) + 1);
 
             } else if (language.equals("PL") && TranslationService.plEnDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.plEnDictionary.get(parsedWord).toLowerCase())) {
-                words.put(TranslationService.plEnDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.plEnDictionary.get(parsedWord).toLowerCase()) + 1);
+
+                translatedWord = TranslationService.plEnDictionary.get(parsedWord).toLowerCase();
+                words.put(translatedWord, words.get(translatedWord) + 1);
 
             } else {
                 words.put(parsedWord, 1);

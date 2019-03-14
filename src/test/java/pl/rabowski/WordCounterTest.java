@@ -3,23 +3,20 @@ package pl.rabowski;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.anarsoft.vmlens.concurrent.junit.ConcurrentTestRunner;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.junit.runner.RunWith;
 import pl.rabowski.exceptions.WordValidationException;
 
 public class WordCounterTest {
-    String[] tableOfWords, wordsInDiffentLanguage;
-    String englishWord, polishWord, germanWord;
+    private String[] tableOfWords, wordsInDiffentLanguage;
+    private String englishWord, polishWord, germanWord;
     private String testWord, testWord2, testWord3;
     private WordCounter wordCounter;
     private Map<String, Integer> words;
@@ -164,32 +161,6 @@ public class WordCounterTest {
     }
 
     @Nested
-    @DisplayName("Tests for word counter method with threads")
-    @RunWith(ConcurrentTestRunner.class)
-    class WordCounterMethodThreadsTest {
-
-
-        @BeforeEach
-        void prepareData() {
-            wordCounter = new WordCounter();
-            tableOfWords = new String[]{"Ala", "kot", "pies", "komputer", "Mieszkanie", "ala"};
-        }
-
-        @Test
-        @DisplayName("Test with two threads")
-        void testWithTwoThreads() throws WordValidationException {
-            for (int i = 0; i < tableOfWords.length; i++) {
-                wordCounter.count(tableOfWords[i]);
-            }
-        }
-
-        @AfterEach
-        void testThreads() {
-            assertEquals(2, wordCounter.getCount("Ala"), "Expect to hit 2 times word Ala");
-        }
-    }
-
-    @Nested
     @DisplayName("Second test for threads")
     class WordCounterTestWithoutConcurrentTest {
 
@@ -197,13 +168,13 @@ public class WordCounterTest {
         void prepareData() {
             wordCounter = new WordCounter();
             tableOfWords = new String[]{"Ala", "kot", "pies", "komputer", "Mieszkanie", "ala"};
-            wordsInDiffentLanguage = new String[]{"kot", "cat", "pies", "myszka", "dictionary"};
+            wordsInDiffentLanguage = new String[]{"kot", "cat", "pies", "katze", "dictionary"};
             englishWord = "cat";
         }
 
         @Test
         @DisplayName("Test with two threads and multi language")
-        void testWithTwoThreads() throws InterruptedException{
+        void testWithTwoThreads() throws InterruptedException {
             CountDownLatch cdl = new CountDownLatch(2);
             Thread firsThread = new Thread(runThread(wordCounter, tableOfWords, cdl));
             Thread secondThread = new Thread(runThread(wordCounter, tableOfWords, cdl));
@@ -215,29 +186,29 @@ public class WordCounterTest {
 
         @Test
         @DisplayName("Test with two threads")
-        void testWithTwoThreadsAndDifferentLanguage() throws InterruptedException{
+        void testWithTwoThreadsAndDifferentLanguage() throws InterruptedException {
             CountDownLatch cdl = new CountDownLatch(2);
             Thread firsThread = new Thread(runThread(wordCounter, wordsInDiffentLanguage, cdl));
             Thread secondThread = new Thread(runThread(wordCounter, wordsInDiffentLanguage, cdl));
             firsThread.start();
             secondThread.start();
             cdl.await();
-            assertEquals(4, wordCounter.getCount(englishWord), "Expect to hit 4 times word " + englishWord);
+            assertEquals(6, wordCounter.getCount(englishWord), "Expect to hit 6 times word " + englishWord);
         }
+    }
 
-        private Runnable runThread(WordCounter wordCounter, String[] words, CountDownLatch countDownLatch) {
-            Runnable first = () -> {
-                try {
-                    for (int i = 0; i < words.length; i++) {
-                        wordCounter.count(words[i]);
-                    }
-                    countDownLatch.countDown();
-                } catch (Exception e) {
-                    e.getMessage();
+    private Runnable runThread(WordCounter wordCounter, String[] words, CountDownLatch countDownLatch) {
+        Runnable first = () -> {
+            try {
+                for (int i = 0; i < words.length; i++) {
+                    wordCounter.count(words[i]);
                 }
-            };
-            return first;
-        }
+                countDownLatch.countDown();
+            } catch (Exception e) {
+                e.getMessage();
+            }
+        };
+        return first;
     }
 }
 

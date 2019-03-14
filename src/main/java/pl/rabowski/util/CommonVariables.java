@@ -8,7 +8,7 @@ public class CommonVariables {
     public static final String REGEX = "^\\p{L}*$";
     public static List<String> englishWords =
             new ArrayList<>(Arrays.asList("dog", "cat", "roll", "car", "dictionary", "sphere", "play", "horse",
-                    "warsaw", "athlete", "javelin", "germany", "mug","sun"));
+                    "warsaw", "athlete", "javelin", "germany", "mug", "sun"));
     public static List<String> germanWords =
             new ArrayList<>(Arrays.asList("hund", "katze", "brötchen", "auto", "wörterbuch", "kugel", "spielen", "pferd",
                     "warschau", "athlet", "speer", "deutschland", "becher", "sonne"));
