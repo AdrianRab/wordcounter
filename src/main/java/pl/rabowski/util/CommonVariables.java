@@ -22,17 +22,21 @@ public class CommonVariables {
 
     public static Map<String, String> enPlDictionary = IntStream.range(0, CommonVariables.englishWords.size()).boxed()
             .collect(Collectors.toMap(i -> CommonVariables.englishWords.get(i), i -> CommonVariables.polishWords.get(i)));
+
     public static Map<String, String> plEnDictionary = IntStream.range(0, CommonVariables.polishWords.size()).boxed()
             .collect(Collectors.toMap(i -> CommonVariables.polishWords.get(i), i -> CommonVariables.englishWords.get(i)));
+
     public static Map<String, String> plDeDictionary = IntStream.range(0, CommonVariables.polishWords.size()).boxed()
             .collect(Collectors.toMap(i -> CommonVariables.polishWords.get(i), i -> CommonVariables.germanWords.get(i)));
+
     public static Map<String, String> dePLDictionary = IntStream.range(0, CommonVariables.germanWords.size()).boxed()
             .collect(Collectors.toMap(i -> CommonVariables.germanWords.get(i), i -> CommonVariables.polishWords.get(i)));
+
     public static Map<String, String> deEnDictionary = IntStream.range(0, CommonVariables.germanWords.size()).boxed()
             .collect(Collectors.toMap(i -> CommonVariables.germanWords.get(i), i -> CommonVariables.englishWords.get(i)));
+
     public static Map<String, String> enDeDictionary = IntStream.range(0, CommonVariables.englishWords.size()).boxed()
             .collect(Collectors.toMap(i -> CommonVariables.englishWords.get(i), i -> CommonVariables.germanWords.get(i)));
-
 
     public static Map<String, String> enPlPlEnDictionary = Stream.concat(enPlDictionary.entrySet().stream(), plEnDictionary.entrySet().stream())
             .collect(Collectors.toMap(

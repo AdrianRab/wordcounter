@@ -9,7 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ import org.junit.runner.RunWith;
 import pl.rabowski.exceptions.WordValidationException;
 
 public class WordCounterTest {
-    String[] words1;
+    String[] tableOfWords, wordsInDiffentLanguage;
     String englishWord, polishWord, germanWord;
     private String testWord, testWord2, testWord3;
     private WordCounter wordCounter;
@@ -81,7 +80,7 @@ public class WordCounterTest {
 
         @ParameterizedTest
         @DisplayName("Should check ten the same strings and return one for each")
-        @ValueSource(strings = {"test", "test", "test", "test", "test", "test", "test", "test", "test"})
+        @ValueSource(strings = {"kot", "cat", "kot", "Kot", "Cat", "kot", "Cat", "cat", "Cat"})
         void shouldCheckOccurrenceForTenSameWords_counterShouldBeOne(String word) throws WordValidationException {
             wordCounter.count(word);
 
@@ -174,14 +173,14 @@ public class WordCounterTest {
         @BeforeEach
         void prepareData() {
             wordCounter = new WordCounter();
-            words1 = new String[]{"Ala", "kot", "pies", "komputer", "Mieszkanie", "ala"};
+            tableOfWords = new String[]{"Ala", "kot", "pies", "komputer", "Mieszkanie", "ala"};
         }
 
         @Test
         @DisplayName("Test with two threads")
         void testWithTwoThreads() throws WordValidationException {
-            for (int i = 0; i < words1.length; i++) {
-                wordCounter.count(words1[i]);
+            for (int i = 0; i < tableOfWords.length; i++) {
+                wordCounter.count(tableOfWords[i]);
             }
         }
 
@@ -198,19 +197,33 @@ public class WordCounterTest {
         @BeforeEach
         void prepareData() {
             wordCounter = new WordCounter();
-            words1 = new String[]{"Ala", "kot", "pies", "komputer", "Mieszkanie", "ala"};
+            tableOfWords = new String[]{"Ala", "kot", "pies", "komputer", "Mieszkanie", "ala"};
+            wordsInDiffentLanguage = new String[]{"kot", "cat", "pies", "myszka", "dictionary"};
+            englishWord = "cat";
         }
 
         @Test
-        @DisplayName("Test with two threads")
+        @DisplayName("Test with two threads and multi language")
         void testWithTwoThreads() throws InterruptedException{
             CountDownLatch cdl = new CountDownLatch(2);
-            Thread firsThread = new Thread(runThread(wordCounter, words1, cdl));
-            Thread secondThread = new Thread(runThread(wordCounter, words1, cdl));
+            Thread firsThread = new Thread(runThread(wordCounter, tableOfWords, cdl));
+            Thread secondThread = new Thread(runThread(wordCounter, tableOfWords, cdl));
             firsThread.start();
             secondThread.start();
             cdl.await();
             assertEquals(4, wordCounter.getCount("Ala"), "Expect to hit 4 times word Ala");
+        }
+
+        @Test
+        @DisplayName("Test with two threads")
+        void testWithTwoThreadsAndDifferentLanguage() throws InterruptedException{
+            CountDownLatch cdl = new CountDownLatch(2);
+            Thread firsThread = new Thread(runThread(wordCounter, wordsInDiffentLanguage, cdl));
+            Thread secondThread = new Thread(runThread(wordCounter, wordsInDiffentLanguage, cdl));
+            firsThread.start();
+            secondThread.start();
+            cdl.await();
+            assertEquals(4, wordCounter.getCount(englishWord), "Expect to hit 4 times word " + englishWord);
         }
 
         private Runnable runThread(WordCounter wordCounter, String[] words, CountDownLatch countDownLatch) {
