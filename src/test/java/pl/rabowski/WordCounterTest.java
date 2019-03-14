@@ -135,13 +135,38 @@ public class WordCounterTest {
 
         @Test
         @DisplayName("Should check same value in two languages pl and en")
-        void shouldCheckSameValueInTwoLanguages_counterShouldBeTwo() throws WordValidationException {
+        void shouldCheckSameValueInTwoLanguagesPlEn_counterShouldBeTwo() throws WordValidationException {
             englishWord = "dog";
             polishWord = "pies";
             wordCounter.count(polishWord);
             wordCounter.count(englishWord);
 
             assertEquals(2, wordCounter.getCount(polishWord));
+            assertEquals(2, wordCounter.getCount(englishWord));
+        }
+
+        @Test
+        @DisplayName("Should check same value in two languages pl and de")
+        void shouldCheckSameValueInTwoLanguagesPlDe_counterShouldBeTwo() throws WordValidationException {
+            polishWord = "koń";
+            germanWord = "pferd";
+            wordCounter.count(polishWord);
+            wordCounter.count(germanWord);
+
+            assertEquals(2, wordCounter.getCount(germanWord));
+            assertEquals(2, wordCounter.getCount(polishWord));
+        }
+
+        @Test
+        @DisplayName("Should check same value in two languages de and en")
+        void shouldCheckSameValueInTwoLanguagesDeEn_counterShouldBeTwo() throws WordValidationException {
+            englishWord = "athlete";
+            germanWord = "athlet";
+            wordCounter.count(englishWord);
+            wordCounter.count(germanWord);
+
+            assertEquals(2, wordCounter.getCount(germanWord));
+            assertEquals(2, wordCounter.getCount(englishWord));
         }
 
         @Test
@@ -168,8 +193,9 @@ public class WordCounterTest {
         void prepareData() {
             wordCounter = new WordCounter();
             tableOfWords = new String[]{"Ala", "kot", "pies", "komputer", "Mieszkanie", "ala"};
-            wordsInDiffentLanguage = new String[]{"kot", "cat", "pies", "katze", "dictionary"};
+            wordsInDiffentLanguage = new String[]{"kot", "cat", "hund", "pies", "katze", "dictionary"};
             englishWord = "cat";
+            germanWord = "hund";
         }
 
         @Test
@@ -193,7 +219,9 @@ public class WordCounterTest {
             firsThread.start();
             secondThread.start();
             cdl.await();
+
             assertEquals(6, wordCounter.getCount(englishWord), "Expect to hit 6 times word " + englishWord);
+            assertEquals(4, wordCounter.getCount(germanWord), "Expect to hit 4 times word " + germanWord);
         }
     }
 
