@@ -8,7 +8,6 @@ import pl.rabowski.util.CommonVariables;
 
 public class TranslationService {
 
-
     public static Map<String, String> enPlDictionary = IntStream.range(0, CommonVariables.englishWords.size()).boxed()
             .collect(Collectors.toMap(i -> CommonVariables.englishWords.get(i), i -> CommonVariables.polishWords.get(i)));
 

@@ -2,6 +2,7 @@ package pl.rabowski;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import pl.rabowski.exceptions.WordValidationException;
@@ -10,8 +11,7 @@ import pl.rabowski.util.CommonVariables;
 
 public class WordCounter {
     private Map<String, Integer> words = new ConcurrentHashMap<>();
-
-    //TODO translation
+    private final ReentrantLock reentrantLock = new ReentrantLock();
 
     public int getCount(String word) {
         if (checkIfValidWord(word)) {
@@ -43,7 +43,8 @@ public class WordCounter {
         return false;
     }
 
-    public synchronized void count(String word) throws WordValidationException {
+    public void count(String word) throws WordValidationException {
+        reentrantLock.lock();
         if (checkIfValidWord(word)) {
 
             String parsedWord = word.toLowerCase().trim();
@@ -55,28 +56,27 @@ public class WordCounter {
 
             } else if (language.equals("DE") && TranslationService.dePLDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.dePLDictionary.get(parsedWord).toLowerCase())) {
-                System.out.println(TranslationService.dePLDictionary.get(parsedWord).toLowerCase());
                 translatedWord = TranslationService.dePLDictionary.get(parsedWord).toLowerCase();
                 words.put(translatedWord, words.get(translatedWord) + 1);
 
             } else if (language.equals("DE") && TranslationService.deEnDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.deEnDictionary.get(parsedWord).toLowerCase())) {
-                System.out.println(TranslationService.deEnDictionary.get(parsedWord).toLowerCase());
+
                 words.put(TranslationService.deEnDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.deEnDictionary.get(parsedWord).toLowerCase()) + 1);
 
             } else if (language.equals("EN") && TranslationService.enDeDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.enDeDictionary.get(parsedWord).toLowerCase())) {
-                System.out.println(TranslationService.enDeDictionary.get(parsedWord).toLowerCase());
+
                 words.put(TranslationService.enDeDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.enDeDictionary.get(parsedWord).toLowerCase()) + 1);
 
             } else if (language.equals("EN") && TranslationService.enPlDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.enPlDictionary.get(parsedWord).toLowerCase())) {
-                System.out.println(TranslationService.enPlDictionary.get(parsedWord).toLowerCase());
+
                 words.put(TranslationService.enPlDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.enPlDictionary.get(parsedWord).toLowerCase()) + 1);
 
             } else if (language.equals("PL") && TranslationService.plDeDictionary.get(parsedWord.toLowerCase()) != null
                     && words.containsKey(TranslationService.plDeDictionary.get(parsedWord).toLowerCase())) {
-                System.out.println(TranslationService.plDeDictionary.get(parsedWord).toLowerCase());
+
                 words.put(TranslationService.plDeDictionary.get(parsedWord).toLowerCase(), words.get(TranslationService.plDeDictionary.get(parsedWord).toLowerCase()) + 1);
 
             } else if (language.equals("PL") && TranslationService.plEnDictionary.get(parsedWord.toLowerCase()) != null
@@ -89,6 +89,7 @@ public class WordCounter {
         } else {
             throw new WordValidationException("Word: " + word + ", has incorrect format");
         }
+        reentrantLock.unlock();
     }
 
     private String checkLanguage(String word) {

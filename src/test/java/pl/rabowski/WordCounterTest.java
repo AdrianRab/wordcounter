@@ -160,7 +160,6 @@ public class WordCounterTest {
             assertEquals(3, wordCounter.getCount(polishWord));
             assertEquals(3, wordCounter.getCount(englishWord));
             assertEquals(3, wordCounter.getCount(germanWord));
-
         }
     }
 
