@@ -15,7 +15,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import pl.rabowski.exceptions.WordValidationException;
 
 public class WordCounterTest {
-    private String[] tableOfWords, wordsInDiffentLanguage;
+    private String[] tableOfWords, wordsInDifferentLanguage;
     private String englishWord, polishWord, germanWord;
     private String testWord, testWord2, testWord3;
     private WordCounter wordCounter;
@@ -193,7 +193,7 @@ public class WordCounterTest {
         void prepareData() {
             wordCounter = new WordCounter();
             tableOfWords = new String[]{"Ala", "kot", "pies", "komputer", "Mieszkanie", "ala"};
-            wordsInDiffentLanguage = new String[]{"kot", "cat", "hund", "pies", "katze", "dictionary"};
+            wordsInDifferentLanguage = new String[]{"kot", "cat", "hund", "pies", "katze", "dictionary"};
             englishWord = "cat";
             germanWord = "hund";
         }
@@ -214,8 +214,8 @@ public class WordCounterTest {
         @DisplayName("Test with two threads")
         void testWithTwoThreadsAndDifferentLanguage() throws InterruptedException {
             CountDownLatch cdl = new CountDownLatch(2);
-            Thread firsThread = new Thread(runThread(wordCounter, wordsInDiffentLanguage, cdl));
-            Thread secondThread = new Thread(runThread(wordCounter, wordsInDiffentLanguage, cdl));
+            Thread firsThread = new Thread(runThread(wordCounter, wordsInDifferentLanguage, cdl));
+            Thread secondThread = new Thread(runThread(wordCounter, wordsInDifferentLanguage, cdl));
             firsThread.start();
             secondThread.start();
             cdl.await();

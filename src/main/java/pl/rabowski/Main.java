@@ -16,13 +16,11 @@ public class Main {
                 }
 
                 for (int j = 0; j < words.length; j++) {
-                    System.out.println("pierwsza lista słowo: " + words[j] + " ilość występowania: " + wordCounter.getCount(words[j]));
+                    System.out.println("WĄTEK 1: pierwsza lista słowo: " + words[j] + " ilość występowania: " + wordCounter.getCount(words[j]));
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
-
         };
         return first;
     }
@@ -36,13 +34,12 @@ public class Main {
                 }
 
                 for (int j = 0; j < word2.length; j++) {
-                    System.out.println("druga lista słowo " + word2[j] + " ilość występowania: " + wordCounter.getCount(word2[j]));
+                    System.out.println("WĄTEK 2: druga lista słowo " + word2[j] + " ilość występowania: " + wordCounter.getCount(word2[j]));
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         };
-
         return second;
     }
 
